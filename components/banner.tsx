@@ -3,12 +3,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-const bannerVariants = cva("border text-center p-4 text-sm flex items-center w-full", {
+const bannerVariants = cva("border text-center p-4 flex items-center w-full", {
   variants: {
     variant: {
-      warning: "bg-yellow-200/80 border-yellow-30 text-primary",
+      warning: "bg-yellow-400/80 border-yellow-300 text-primary",
       success: "bg-emerald-700 border-emerald-800 text-secondary",
-      danger: "bg-rose-700 border-rose-800 text-secondary",
+      danger: "bg-rose-500 border-rose-800 text-primary",
     },
   },
   defaultVariants: {
@@ -32,7 +32,7 @@ const Banner = ({ label, variant }: BannerProps) => {
   return (
     <div className={cn(bannerVariants({ variant }))}>
       <Icon className="h-4 w-4 mr-2" />
-      {label}
+      <p className="text-xs md:text-base">{label}</p>
     </div>
   );
 };

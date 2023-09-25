@@ -25,7 +25,7 @@ const CommandMenu = () => {
     <>
       <Button
         variant="outline"
-        className={cn("relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-48")}
+        className={cn("relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-72")}
         onClick={() => setOpen(true)}
       >
         <span className="inline-flex">Search...</span>

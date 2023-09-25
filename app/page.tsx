@@ -1,17 +1,12 @@
-import { Button } from "@/components/ui/button";
-
 import Banner from "@/components/banner";
+import Books from "@/components/books";
 
-export default function Home() {
+export default async function Home() {
   return (
-    <main className="w-11/12 mx-auto my-10">
-      <Banner label="Hello World" />
-      <Banner label="Hello World" variant="danger" />
-      <Banner label="Hello World" variant="success" />
+    <main className="w-11/12 mx-auto my-2">
+      <Banner label="Opps! Its seems like you are unauthoized!!" />
 
-      <h2>Hello World!!</h2>
-
-      <Button>Hello World!!</Button>
+      <Books />
     </main>
   );
 }
