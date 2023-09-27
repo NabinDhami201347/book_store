@@ -1,10 +1,14 @@
-import { FcLibrary, FcReadingEbook } from "react-icons/fc";
+"use client";
+
+import { FcLibrary } from "react-icons/fc";
 import { BiMenuAltLeft } from "react-icons/bi";
 
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
 import ThemeToggle from "@/components/theme-toogle";
+import { LogOut } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 const MobileNavigation = () => {
   return (
@@ -25,8 +29,8 @@ const MobileNavigation = () => {
 
         <SheetFooter className="mt-auto border-t py-2 flex flex-row gap-4 items-center">
           <ThemeToggle />
-          <Button variant="outline" size="icon">
-            <FcReadingEbook className="h-6 w-6" />
+          <Button variant="outline" size="icon" onClick={() => signOut()}>
+            <LogOut className="h-6 w-6" />
           </Button>
         </SheetFooter>
       </SheetContent>

@@ -1,20 +1,16 @@
-"use client";
-
 import { FcFlashAuto, FcLibrary } from "react-icons/fc";
-import { useState } from "react";
+import { getServerSession } from "next-auth";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import CommandMenu from "@/components/nav/command-menu";
 import ThemeToggle from "@/components/theme-toogle";
 import Cart from "@/components/cart";
 
-const DesktopNavigation = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleClick = () => {
-    setIsLoggedIn((prev) => !prev);
-  };
+const DesktopNavigation = async () => {
+  const session = await getServerSession();
 
   return (
     <nav className="flex w-11/12 mx-auto items-center justify-between">
@@ -26,16 +22,27 @@ const DesktopNavigation = () => {
       <CommandMenu />
 
       <div className="flex items-center gap-2">
-        <ThemeToggle />
+        {session?.user?.name ? (
+          <>
+            <Button className="flex items-center gap-2" variant="secondary">
+              {session?.user?.name!}
+              <Avatar>
+                <AvatarImage src={session?.user?.image!} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </Button>
 
-        {isLoggedIn ? (
-          <Cart />
+            <Cart />
+          </>
         ) : (
-          <Button onClick={handleClick} size="sm" variant="outline">
-            <FcFlashAuto className="mr-2" />
-            Signup
-          </Button>
+          <Link href="/login">
+            <Button size="sm" variant="outline">
+              <FcFlashAuto className="mr-2" />
+              Signup
+            </Button>
+          </Link>
         )}
+        <ThemeToggle />
       </div>
     </nav>
   );
